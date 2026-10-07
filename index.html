@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قدورة | لوحة تحكم المطعم</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div id="loginScreen" class="screen">
+    <div class="login-card">
+      <div class="logo">قدورة</div>
+      <h1>لوحة تحكم المطعم</h1>
+      <p>سجّل الدخول لإدارة الطلبات</p>
+      <form id="loginForm">
+        <label>البريد الإلكتروني</label>
+        <input id="email" type="email" required autocomplete="username">
+        <label>كلمة المرور</label>
+        <input id="password" type="password" required autocomplete="current-password">
+        <button type="submit">تسجيل الدخول</button>
+        <div id="loginError" class="error"></div>
+      </form>
+    </div>
+  </div>
+
+  <div id="appScreen" class="app hidden">
+    <header class="topbar">
+      <div>
+        <strong>مطعم قدورة</strong>
+        <span>لوحة التحكم</span>
+      </div>
+      <button id="logoutBtn" class="secondary">تسجيل الخروج</button>
+    </header>
+
+    <main class="container">
+      <section class="stats">
+        <div><span>كل الطلبات</span><b id="statAll">0</b></div>
+        <div><span>طلبات جديدة</span><b id="statNew">0</b></div>
+        <div><span>قيد التحضير</span><b id="statPreparing">0</b></div>
+        <div><span>جاهزة</span><b id="statReady">0</b></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>الطلبات</h2>
+          <select id="statusFilter">
+            <option value="">كل الحالات</option>
+            <option value="new">جديد</option>
+            <option value="preparing">قيد التحضير</option>
+            <option value="ready">جاهز</option>
+            <option value="out_for_delivery">خرج للتوصيل</option>
+            <option value="delivered">تم التسليم</option>
+            <option value="cancelled">ملغي</option>
+          </select>
+        </div>
+        <div id="ordersList" class="orders-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="orderModal" class="modal hidden">
+    <div class="modal-card">
+      <button class="close" id="closeModal">×</button>
+      <div id="orderDetails"></div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
